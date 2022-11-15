@@ -24,8 +24,7 @@
                 <div class="form-container">
                     <div class="form-content">
 
-                        <h1 class="">Sign In</h1>
-                        <p class="">Log in to your account to continue.</p>
+                        @stack("page-title")
 
                         @yield("content")
 
