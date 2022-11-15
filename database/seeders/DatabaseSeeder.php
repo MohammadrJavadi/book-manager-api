@@ -16,17 +16,8 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        User::query()->create([
-            "name"=>"Robin",
-            "family"=>"Mcclure",
-            "password"=>Hash::make("015049115888"),
-            "phone"=>"015049115888",
-            "gender"=>"man"
-        ]);
+        $this->call([RolePermissionSeeder::class, UserSeeder::class]);
 
-        if (config("app.env") !== "production"){
-            User::factory(10)->create();
-        }
 
         // \App\Models\User::factory()->create([
         //     'name' => 'Test User',
