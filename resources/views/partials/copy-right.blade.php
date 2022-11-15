@@ -1,7 +1,6 @@
 <div class="footer-wrapper">
     <div class="footer-section f-section-1">
-        <p class="">Copyright © 2020 <a target="_blank" href="https://designreset.com">DesignReset</a>, All rights
-            reserved.</p>
+        <p class="">Copyright (c) 2022, <a href="https://github.com/MohammadrJavadi">MohammadrJavadi</a></p>
     </div>
     <div class="footer-section f-section-2">
         <p class="">Coded with
