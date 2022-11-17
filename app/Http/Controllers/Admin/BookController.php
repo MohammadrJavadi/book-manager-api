@@ -2,15 +2,16 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\DataTables\BookDataTable;
 use App\Http\Controllers\Controller;
 use App\Models\Book;
 use Illuminate\Http\Request;
 
 class BookController extends Controller
 {
-    public function index()
+    public function index(BookDataTable $dataTable)
     {
-        return view("admin.books.index");
+        return $dataTable->render("admin.books.index");
     }
 
     public function create()
