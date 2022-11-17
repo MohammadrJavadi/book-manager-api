@@ -1,5 +1,5 @@
 @props([
-    "title", "icon", "items"=>[]
+    "title", "icon", "items"
 ])
 <li class="menu">
     <a href="#submenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
@@ -16,10 +16,6 @@
         </div>
     </a>
     <ul class="collapse submenu list-unstyled" id="submenu" data-parent="#accordionExample">
-        @foreach($items as $item)
-            <li>
-                <a href="{{ $item["href"] }}">{{ $item["text"] }}</a>
-            </li>
-        @endforeach
+        {{ $items }}
     </ul>
 </li>

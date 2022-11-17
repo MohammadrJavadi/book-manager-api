@@ -19,4 +19,7 @@ Route::middleware([
     'verified'
 ])->group(function () {
     Route::get('/', [\App\Http\Controllers\DashboardController::class, "index"])->name('dashboard');
+    //#region books
+    Route::resource('books', \App\Http\Controllers\Admin\BookController::class);
+    //#endregion
 });

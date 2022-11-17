@@ -22,7 +22,7 @@ class BookPolicy
 
     public function create(User $user): bool
     {
-        return $user->hasRole("admin") || $user->can("create book");
+        return $user->hasRole("admin") || $user->hasPermissionTo("create book");
     }
 
     public function update(User $user, Book $book): bool
