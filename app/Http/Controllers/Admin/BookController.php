@@ -35,7 +35,7 @@ class BookController extends Controller
     {
         $path = $this->uploadImageService->store("image");
         $this->command->create($request->validated()+["image"=>$path, "category_id"=>15, "author_id"=>15]);
-        return back()->with("success", trans("message.created", ["resource" => "book"]));
+        return $this->backWithMessage("success", trans("message.created", ["resource" => "book"]));
     }
 
     public function show($id)
