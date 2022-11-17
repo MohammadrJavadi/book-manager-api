@@ -21,7 +21,13 @@ class BookDataTable extends DataTable
     {
         return datatables()
             ->eloquent($query)
-            ->addColumn('action', 'book.action');
+            ->addColumn('action', 'book.action')
+            ->editColumn("action", function ($item) {
+                $item_id = el("input", ["type" => "hidden", "value" => $item->id], $item->id);
+                $edit_btn = el("a.text-warning", ["href" => route("books.edit", $item->id)], el("i.fa-solid.fa-pen-to-square.table-icon"));
+                $delete_btn = el("a.text-danger", el("i.fa-solid.fa-trash.table-icon"));
+                return el("pre", $item_id . " " . $edit_btn . " " . $delete_btn);
+            });
     }
 
     /**
@@ -64,7 +70,7 @@ class BookDataTable extends DataTable
             Column::make('code'),
             Column::make("title"),
             Column::make("shelf_number"),
-            Column::make('created_at'),
+            Column::computed('action')->title(""),
 //            Column::make('updated_at'),
         ];
     }

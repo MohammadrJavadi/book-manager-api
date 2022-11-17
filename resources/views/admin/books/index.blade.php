@@ -6,6 +6,12 @@
     <link rel="stylesheet" type="text/css" href="{{ asset("plugins/table/datatable/datatables.css") }}">
     <link rel="stylesheet" type="text/css" href="{{ asset("plugins/table/datatable/custom_dt_html5.css") }}">
     <link rel="stylesheet" type="text/css" href="{{ asset("plugins/table/datatable/dt-global_style.css") }}">
+    <style>
+        .table-icon{
+            font-size: 20px;
+            cursor: pointer;
+        }
+    </style>
 @endsection
 @push("sub-title")
     Books list
