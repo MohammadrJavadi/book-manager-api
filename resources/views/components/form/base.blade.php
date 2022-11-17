@@ -9,7 +9,9 @@
     <div class="row">
         {{ $slot }}
         @if($errors->any())
-            <div class="alert alert-danger">{{ $errors->first() }}</div>
+            <div class="col-sm-12 mt-3">
+                <div class="alert alert-danger">First error:{{ $errors->first() }}</div>
+            </div>
         @endif
         <div class="col-sm-12 text-right mt-3">
             <button class="btn btn-danger" type="reset">Reset</button>

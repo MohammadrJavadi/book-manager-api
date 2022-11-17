@@ -2,6 +2,9 @@
 @push("title")
     Create book
 @endpush
+@section("styles")
+    <link rel="stylesheet" href="{{ asset("plugins/sweetalerts/sweetalert2.min.css") }}">
+@endsection
 @push("sub-title")
     Create book
 @endpush
@@ -38,4 +41,14 @@
             </div>
         </div>
     </div>
+
+    <input type="hidden" id="success" value="{{ session("success")??null }}">
+@endsection
+@section("scripts")
+    <script src="{{ asset("plugins/sweetalerts/sweetalert2.min.js") }}"></script>
+    @if(session()->has("success"))
+        <script>
+
+        </script>
+    @endif
 @endsection
