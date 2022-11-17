@@ -19,6 +19,8 @@ class RolePermissionSeeder extends Seeder
         $trust_book = Permission::query()->create(["name"=>"trust book"]);
         $delivery_book = Permission::query()->create(["name"=>"delivery book"]);
         $author_page = Permission::query()->create(["name"=>"author page access"]);
+        Permission::query()->create(["name"=>"create book"]);
+        Permission::query()->create(["name"=>"update book"]);
 
         //#endregion
 
