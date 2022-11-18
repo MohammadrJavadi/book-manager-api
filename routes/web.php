@@ -18,5 +18,8 @@ Route::middleware([
     config('jetstream.auth_session'),
     'verified'
 ])->group(function () {
-    Route::get('/dashboard', [\App\Http\Controllers\DashboardController::class, "index"])->name('dashboard');
+    Route::get('/', [\App\Http\Controllers\DashboardController::class, "index"])->name('dashboard');
+    //#region books
+    Route::resource('books', \App\Http\Controllers\Admin\BookController::class);
+    //#endregion
 });
