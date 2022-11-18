@@ -43,12 +43,22 @@
     </div>
 
     <input type="hidden" id="success" value="{{ session("success")??null }}">
+    <input type="hidden" id="book-list-page" value="{{ route("books.index") }}">
 @endsection
 @section("scripts")
     <script src="{{ asset("plugins/sweetalerts/sweetalert2.min.js") }}"></script>
     @if(session()->has("success"))
         <script>
-
+            swal({
+                title:"Success!",
+                text:$("#success").val(),
+                type:"success",
+                showCancelButton:true,
+                confirmButtonText:'Redirect to list',
+                cancelButtonText:'Cancel'
+            }).then(()=>{
+                location.replace($("#book-list-page").val());
+            });
         </script>
     @endif
 @endsection
