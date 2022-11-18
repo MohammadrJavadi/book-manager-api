@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\BookRequest;
 use App\Models\Book;
 use App\Repositories\Interfaces\Book\BookCommandRepositoryInterface;
+use App\Repositories\Interfaces\Book\BookQueryRepositoryInterface;
 use App\Services\UploadImageService;
 use Illuminate\Http\Request;
 
@@ -14,11 +15,13 @@ class BookController extends Controller
 {
     private BookCommandRepositoryInterface $command;
     private UploadImageService $uploadImageService;
+    private BookQueryRepositoryInterface $query;
 
-    public function __construct(BookCommandRepositoryInterface $command, UploadImageService $uploadImageService)
+    public function __construct(BookQueryRepositoryInterface $query, BookCommandRepositoryInterface $command, UploadImageService $uploadImageService)
     {
         $this->command = $command;
         $this->uploadImageService = $uploadImageService;
+        $this->query = $query;
     }
 
     public function index(BookDataTable $dataTable)
@@ -33,8 +36,8 @@ class BookController extends Controller
 
     public function store(BookRequest $request)
     {
-        $path = $this->uploadImageService->store("image");
-        $this->command->create($request->validated()+["image"=>$path, "category_id"=>15, "author_id"=>15]);
+        $filePath = $request->file("image")->store("images");
+        $book = $this->command->create($request->only(["title", "code", "shelf_number", "summary"]) + ["image"=>$filePath, "category_id"=>15, "author_id"=>14]);
         return $this->backWithMessage("success", trans("message.created", ["resource" => "book"]));
     }
 
@@ -44,6 +47,7 @@ class BookController extends Controller
 
     public function edit($id)
     {
+        return view("admin.books.edit", ["book"=>$this->query->get($id, true)]);
     }
 
     public function update(Request $request, $id)

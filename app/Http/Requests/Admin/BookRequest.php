@@ -13,7 +13,7 @@ class BookRequest extends FormRequest
         return [
             "title"=>"required|string|min:15",
             "summary"=>"nullable|string|min:50",
-            "image"=>"required|file|mimes:jpg",
+            "image"=>"required|image|mimes:jpg",
             "code"=>"required|min:5|unique:books",
             "shelf_number"=>"required|min:3"
         ];
