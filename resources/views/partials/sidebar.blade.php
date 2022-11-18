@@ -37,6 +37,11 @@
                     @endcan
                 </x-slot:items>
             </x-sidebar.drop-menu>
+            <x-sidebar.menu href="" text="Authors">
+                <x-slot:icon>
+                    <i class="fa-solid fa-pen"></i>
+                </x-slot:icon>
+            </x-sidebar.menu>
         </ul>
 
     </nav>
