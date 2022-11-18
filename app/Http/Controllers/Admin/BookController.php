@@ -37,7 +37,6 @@ class BookController extends Controller
     public function store(BookRequest $request)
     {
         $filePath = $this->service->store("image");
-//        dd($filePath);
         $this->command->create($request->only(["title", "code", "shelf_number", "summary"]) + ["image"=>$filePath, "category_id"=>15, "author_id"=>14]);
         return $this->backWithMessage("success", trans("message.created", ["resource" => "book"]));
     }
@@ -51,11 +50,15 @@ class BookController extends Controller
         return view("admin.books.edit", ["book"=>$this->query->get($id, true)]);
     }
 
-    public function update(Request $request, $id)
+    public function update(BookRequest $request, $id)
     {
+        $filePath=$this->service->store("image");
+        $this->command->update($id, $request->only(["title", "code", "shelf_number", "summary"])+["image"=>$filePath]);
+        return $this->redirectRouteWithMessage("books.index", "success", trans("message.updated", ["resource" => "book"]));
     }
 
     public function destroy($id)
     {
+        return $this->command->delete($id);
     }
 }

@@ -19,7 +19,7 @@
             <div class="col-sm-12">
                 <div class="card">
                     <div class="card-body">
-                        <x-form.base :action="route('books.store')" method="post" enctype="multipart/form-data">
+                        <x-form.base :action="route('books.update', $book->id)" method="PUT" enctype="multipart/form-data">
                             <div class="col-sm-12">
                                 <x-form.input type="file" id="image" name="image" label="Image:"/>
                                 <p class="text-info">Image previous: {{ $book->image }}</p>

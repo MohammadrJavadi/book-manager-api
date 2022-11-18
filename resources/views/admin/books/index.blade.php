@@ -6,6 +6,7 @@
     <link rel="stylesheet" type="text/css" href="{{ asset("plugins/table/datatable/datatables.css") }}">
     <link rel="stylesheet" type="text/css" href="{{ asset("plugins/table/datatable/custom_dt_html5.css") }}">
     <link rel="stylesheet" type="text/css" href="{{ asset("plugins/table/datatable/dt-global_style.css") }}">
+    <link rel="stylesheet" href="{{ asset("plugins/sweetalerts/sweetalert2.min.css") }}">
     <style>
         .table-icon{
             font-size: 20px;
@@ -39,6 +40,8 @@
             </div>
         </div>
     </div>
+
+    <input type="hidden" id="success" value="{{ session("success")??null }}">
 @endsection
 @section("scripts")
     <script src="{{ asset("plugins/table/datatable/datatables.js") }}"></script>
@@ -47,5 +50,16 @@
     <script src="{{ asset("plugins/table/datatable/button-ext/jszip.min.js") }}"></script>
     <script src="{{ asset("plugins/table/datatable/button-ext/buttons.html5.min.js") }}"></script>
     <script src="{{ asset("plugins/table/datatable/button-ext/buttons.print.min.js") }}"></script>
+    <script src="{{ asset("plugins/sweetalerts/sweetalert2.min.js") }}"></script>
     {{ $dataTable->scripts() }}
+    @if(session()->has("success"))
+        <script>
+            swal({
+                title:"Success!",
+                text:$("#success").val(),
+                type:"success",
+                confirmButtonText:'OK',
+            });
+        </script>
+    @endif
 @endsection

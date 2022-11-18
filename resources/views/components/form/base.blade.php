@@ -1,11 +1,9 @@
 @props([
     "action", "method"=>"get", "enctype"=>""
 ])
-<form action="{{ $action }}" @if($method=="post" || $method=="get") method="{{ $method }}" @endif enctype="{{ $enctype }}">
+<form action="{{ $action }}" method="{{ $method!="get"?"post":"get" }}" enctype="{{ $enctype }}">
     @csrf
-    @if($method !== "post" || $method!== "get")
-        @method(strtoupper($method))
-    @endif
+    @method($method)
     <div class="row">
         {{ $slot }}
         @if($errors->any())
