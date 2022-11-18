@@ -24,9 +24,10 @@ class BookDataTable extends DataTable
             ->addColumn('action', 'book.action')
             ->editColumn("action", function ($item) {
                 $item_id = el("input", ["type" => "hidden", "value" => $item->id], $item->id);
+                $delete_page = el("input", ["type" => "hidden", "value" => route("books.destroy", $item->id)], route("books.destroy", $item->id));
                 $edit_btn = el("a.text-warning", ["href" => route("books.edit", $item->id)], el("i.fa-solid.fa-pen-to-square.table-icon"));
-                $delete_btn = el("a.text-danger", el("i.fa-solid.fa-trash.table-icon"));
-                return el("pre", $item_id . " " . $edit_btn . " " . $delete_btn);
+                $delete_btn = el("a.text-danger.delete-btn", el("i.fa-solid.fa-trash.table-icon"));
+                return el("pre", $item_id . $delete_page . $edit_btn . " " . $delete_btn);
             });
     }
 
