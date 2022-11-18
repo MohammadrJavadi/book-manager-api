@@ -43,6 +43,7 @@ class BookController extends Controller
 
     public function show($id)
     {
+        return view("admin.books.show", ["book"=>$this->query->get($id, true)]);
     }
 
     public function edit($id)
