@@ -18,7 +18,7 @@ class UploadImageService
         return $this->request->file($requestName)->getClientOriginalName();
     }
 
-    public function store(string $requestName, string $path="public/images")
+    public function store(string $requestName, string $path="images")
     {
         return $this->request->file($requestName)->store($path);
     }
