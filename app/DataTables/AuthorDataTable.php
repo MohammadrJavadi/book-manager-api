@@ -21,7 +21,16 @@ class AuthorDataTable extends DataTable
     {
         return datatables()
             ->eloquent($query)
-            ->addColumn('action', 'author.action');
+            ->addColumn('action', 'author.action')
+            ->editColumn("gender", function ($item){
+                $man = el("span.badge.badge-primary", __("general.gender.man"));
+                $woman = el("span.badge.badge-secondary", __("general.gender.woman"));
+                return $item->gender=="man"?$man:$woman;
+            })
+            ->editColumn("action", function (){
+
+            })
+            ->rawColumns(["gender"]);
     }
 
     /**
@@ -43,18 +52,14 @@ class AuthorDataTable extends DataTable
     public function html()
     {
         return $this->builder()
-                    ->setTableId('author-table')
-                    ->columns($this->getColumns())
-                    ->minifiedAjax()
-                    ->dom('Bfrtip')
-                    ->orderBy(1)
-                    ->buttons(
-                        Button::make('create'),
-                        Button::make('export'),
-                        Button::make('print'),
-                        Button::make('reset'),
-                        Button::make('reload')
-                    );
+            ->setTableId('author-table')
+            ->columns($this->getColumns())
+            ->minifiedAjax()
+            ->dom('Bfrtip')
+            ->orderBy(1)
+            ->parameters([
+                "buttons"=>["print"]
+            ]);
     }
 
     /**
@@ -65,15 +70,11 @@ class AuthorDataTable extends DataTable
     protected function getColumns()
     {
         return [
-            Column::computed('action')
-                  ->exportable(false)
-                  ->printable(false)
-                  ->width(60)
-                  ->addClass('text-center'),
-            Column::make('id'),
-            Column::make('add your columns'),
-            Column::make('created_at'),
-            Column::make('updated_at'),
+            Column::make("name"),
+            Column::make("family"),
+            Column::make("gender"),
+            Column::make("age"),
+            Column::computed("action")->title("")
         ];
     }
 
@@ -82,7 +83,7 @@ class AuthorDataTable extends DataTable
      *
      * @return string
      */
-    protected function filename()
+    protected function filename(): string
     {
         return 'Author_' . date('YmdHis');
     }
