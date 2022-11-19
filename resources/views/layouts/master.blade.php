@@ -13,6 +13,7 @@
     <link rel="stylesheet" href="{{ asset("css/all.css") }}">
     <link href="{{ asset("bootstrap/css/bootstrap.min.css") }}" rel="stylesheet" type="text/css" />
     <link href="{{ asset("assets/css/plugins.css") }}" rel="stylesheet" type="text/css" />
+    @livewireStyles
     <!-- END GLOBAL MANDATORY STYLES -->
 
     <!-- BEGIN PAGE LEVEL PLUGINS/CUSTOM STYLES -->
@@ -72,6 +73,7 @@
         });
     </script>
     <script src="{{ asset("assets/js/custom.js") }}"></script>
+    @livewireScripts
     <!-- END GLOBAL MANDATORY SCRIPTS -->
 
     <!-- BEGIN PAGE LEVEL PLUGINS/CUSTOM SCRIPTS -->
