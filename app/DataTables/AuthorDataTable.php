@@ -22,15 +22,19 @@ class AuthorDataTable extends DataTable
         return datatables()
             ->eloquent($query)
             ->addColumn('action', 'author.action')
-            ->editColumn("gender", function ($item){
+            ->editColumn("gender", function ($item) {
                 $man = el("span.badge.badge-primary", __("general.gender.man"));
                 $woman = el("span.badge.badge-secondary", __("general.gender.woman"));
-                return $item->gender=="man"?$man:$woman;
+                return $item->gender == "man" ? $man : $woman;
             })
-            ->editColumn("action", function (){
-
+            ->editColumn("action", function ($item) {
+                $user = auth()->user();
+                $item_id = el("input", ["type" => "hidden", "value" => $item->id], $item->id);
+                $edit_btn = $user->can("update", $item) ? el("a.text-warning", el("i.fa-solid.fa-pen-to-square.table-icon")) : "";
+                $delete_btn = $user->can("delete", $item) ? el("a.text-danger", el("i.fa-solid.fa-trash.table-icon")) : "";
+                return el("pre", $item_id . $edit_btn . " " . $delete_btn);
             })
-            ->rawColumns(["gender"]);
+            ->rawColumns(["gender", "action"]);
     }
 
     /**
@@ -58,7 +62,7 @@ class AuthorDataTable extends DataTable
             ->dom('Bfrtip')
             ->orderBy(1)
             ->parameters([
-                "buttons"=>["print"]
+                "buttons" => ["print"]
             ]);
     }
 

@@ -22,7 +22,7 @@ class AuthorPolicy
 
     public function create(User $user): bool
     {
-        return $user->hasRole("admin");
+        return $user->hasRole(["admin", "operator"]);
     }
 
     public function update(User $user, Author $author): bool
