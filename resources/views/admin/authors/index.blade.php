@@ -55,15 +55,5 @@
     <script src="{{ asset("plugins/table/datatable/button-ext/buttons.html5.min.js") }}"></script>
     <script src="{{ asset("plugins/table/datatable/button-ext/buttons.print.min.js") }}"></script>
     {{ $dataTable->scripts() }}
-    <script>
-        $(function () {
-            $("#create-author-modal-btn").click(()=>{
-                Livewire.emit("openModal");
-            });
-            $(document).on("click", ".btn-update", function (event){
-                const item_id = event.target.parentElement.parentElement.childNodes[0].value;
-                Livewire.emit("openUpdateModal", item_id);
-            });
-        });
-    </script>
+    <script src="{{ asset("assets/js/authors.js") }}"></script>
 @endsection
