@@ -23,6 +23,6 @@ Route::middleware([
     Route::resource('books', \App\Http\Controllers\Admin\BookController::class);
     //#endregion
     //#region authors
-    Route::resource("authors", \App\Http\Controllers\Admin\AuthorController::class)->except("create", "edit");
+    Route::resource("authors", \App\Http\Controllers\Admin\AuthorController::class)->only("index", "destroy");
     //#endregion
 });
