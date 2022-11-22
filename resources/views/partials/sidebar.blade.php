@@ -26,6 +26,11 @@
                     </svg>
                 </x-slot>
             </x-sidebar.menu>
+            <x-sidebar.menu :href="route('authors.index')" text="Authors">
+                <x-slot:icon>
+                    <i class="fa-solid fa-pen"></i>
+                </x-slot:icon>
+            </x-sidebar.menu>
             <x-sidebar.drop-menu title="Books">
                 <x-slot:icon>
                     <i class="fa-solid fa-book"></i>
@@ -37,9 +42,9 @@
                     @endcan
                 </x-slot:items>
             </x-sidebar.drop-menu>
-            <x-sidebar.menu :href="route('authors.index')" text="Authors">
+            <x-sidebar.menu :href="route('categories.index')" text="Categories">
                 <x-slot:icon>
-                    <i class="fa-solid fa-pen"></i>
+                    <i class="fa-solid fa-cube"></i>
                 </x-slot:icon>
             </x-sidebar.menu>
         </ul>
