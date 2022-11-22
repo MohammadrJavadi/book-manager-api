@@ -6,6 +6,7 @@
     <link rel="stylesheet" type="text/css" href="{{ asset("plugins/table/datatable/datatables.css") }}">
     <link rel="stylesheet" type="text/css" href="{{ asset("plugins/table/datatable/custom_dt_html5.css") }}">
     <link rel="stylesheet" type="text/css" href="{{ asset("plugins/table/datatable/dt-global_style.css") }}">
+    <link rel="stylesheet" href="{{ asset("plugins/sweetalerts/sweetalert2.min.css") }}">
     <style>
         .table-icon{
             font-size: 20px;
@@ -46,6 +47,9 @@
             </div>
         </div>
     </div>
+
+    <input type="hidden" id="author-base-link" value="{{ route("authors.index") }}">
+    <input type="hidden" id="csrf" value="{{ csrf_token() }}">
 @endsection
 @section("scripts")
     <script src="{{ asset("plugins/table/datatable/datatables.js") }}"></script>
@@ -54,6 +58,7 @@
     <script src="{{ asset("plugins/table/datatable/button-ext/jszip.min.js") }}"></script>
     <script src="{{ asset("plugins/table/datatable/button-ext/buttons.html5.min.js") }}"></script>
     <script src="{{ asset("plugins/table/datatable/button-ext/buttons.print.min.js") }}"></script>
+    <script src="{{ asset("plugins/sweetalerts/sweetalert2.min.js") }}"></script>
     {{ $dataTable->scripts() }}
     <script src="{{ asset("assets/js/authors.js") }}"></script>
 @endsection
