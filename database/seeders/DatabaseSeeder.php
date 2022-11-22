@@ -16,7 +16,7 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        $this->call([RolePermissionSeeder::class, UserSeeder::class, BookSeeder::class, AuthorSeeder::class]);
+        $this->call([RolePermissionSeeder::class, UserSeeder::class, BookSeeder::class, AuthorSeeder::class, CategorySeeder::class]);
 
 
         // \App\Models\User::factory()->create([
