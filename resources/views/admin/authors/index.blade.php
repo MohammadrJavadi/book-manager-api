@@ -29,7 +29,6 @@
                     <div class="card-body">
                         @can("create", \App\Models\Author::class)
                             <div class="w-100 text-right">
-{{--                                @livewire("authors.create-author")--}}
                                 <x-elements.modal-btn target="createAuthor" content="Create" class="btn btn-primary" id="create-author-modal-btn"/>
 
                                 <x-elements.modal id="createAuthor">
@@ -39,6 +38,9 @@
                             <hr class="mb-2">
                         @endcan
                         {{ $dataTable->table() }}
+                            <x-elements.modal id="updateAuthor">
+                                @livewire("authors.update-author")
+                            </x-elements.modal>
                     </div>
                 </div>
             </div>
@@ -54,11 +56,14 @@
     <script src="{{ asset("plugins/table/datatable/button-ext/buttons.print.min.js") }}"></script>
     {{ $dataTable->scripts() }}
     <script>
-        $("#create-author-modal-btn").click(()=>{
-            Livewire.emit("openModal");
+        $(function () {
+            $("#create-author-modal-btn").click(()=>{
+                Livewire.emit("openModal");
+            });
+            $(document).on("click", ".btn-update", function (event){
+                const item_id = event.target.parentElement.parentElement.childNodes[0].value;
+                Livewire.emit("openUpdateModal", item_id);
+            });
         });
     </script>
-    @if(session()->has("success"))
-        <script src="{{ asset("assets/js/success-message.js") }}"></script>
-    @endif
 @endsection

@@ -30,7 +30,7 @@ class AuthorDataTable extends DataTable
             ->editColumn("action", function ($item) {
                 $user = auth()->user();
                 $item_id = el("input", ["type" => "hidden", "value" => $item->id], $item->id);
-                $edit_btn = $user->can("update", $item) ? el("a.text-warning", el("i.fa-solid.fa-pen-to-square.table-icon")) : "";
+                $edit_btn = $user->can("update", $item) ? el("a.text-warning.btn-update", el("i.fa-solid.fa-pen-to-square.table-icon")) : "";
                 $delete_btn = $user->can("delete", $item) ? el("a.text-danger", el("i.fa-solid.fa-trash.table-icon")) : "";
                 return el("pre", $item_id . $edit_btn . " " . $delete_btn);
             })
