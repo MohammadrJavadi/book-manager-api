@@ -6,6 +6,10 @@ use Livewire\Component;
 
 class CreateCategory extends Component
 {
+    //#region models
+    public $title;
+    public $summary;
+    //#endregion
     protected $listeners=[
         "cc-open"=>"open"
     ];
