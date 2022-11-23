@@ -21,6 +21,12 @@
             <div class="col-sm-12">
                 <div class="card">
                     <div class="card-body">
+                        @can("create", \App\Models\Category::class)
+                            <div class="w-100 text-right">
+                                <button class="btn btn-primary">Create</button>
+                            </div>
+                            <hr>
+                        @endcan
                         {{ $dataTable->table() }}
                     </div>
                 </div>
