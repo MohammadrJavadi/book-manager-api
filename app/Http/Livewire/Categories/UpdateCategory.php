@@ -6,6 +6,10 @@ use Livewire\Component;
 
 class UpdateCategory extends Component
 {
+    //#region models
+    public $title;
+    public $summary;
+    //#endregion
     protected $listeners=[
         "uc-open"=>"open"
     ];
