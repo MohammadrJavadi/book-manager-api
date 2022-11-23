@@ -1,5 +1,6 @@
 <?php
 
 return [
-    "row"=>"row"
+    "row"=>"row",
+    "title"=>"title"
 ];

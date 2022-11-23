@@ -62,8 +62,11 @@ class CategoryDataTable extends DataTable
     {
         return [
             Column::computed('DT_RowIndex')->title(__("table.row")),
-            Column::make('title'),
+            Column::make('title')->title(__("table.title")),
             Column::computed('action')
+                ->title("")
+                ->printable(false)
+                ->exportable(false)
                 ->addClass('text-center'),
         ];
     }
