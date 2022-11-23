@@ -40,8 +40,13 @@
                 </div>
             </div>
         </div>
-        <x-elements.modal id="createCategory">
-            @livewire("categories.create-category")
+        @can("create", \App\Models\Category::class)
+            <x-elements.modal id="createCategory">
+                @livewire("categories.create-category")
+            </x-elements.modal>
+        @endcan
+        <x-elements.modal id="updateCategory">
+            @livewire("categories.update-category")
         </x-elements.modal>
     </div>
 @endsection
@@ -59,6 +64,9 @@
         $(function () {
             $("#create-category-btn").click(() => {
                 Livewire.emit("cc-open");
+            });
+            $(document).on("click", ".btn-update", ()=>{
+                Livewire.emit("uc-open");
             });
         })
     </script>
