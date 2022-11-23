@@ -27,7 +27,9 @@
                             </div>
                             <hr>
                         @endcan
-                        {{ $dataTable->table() }}
+                        @can("viewAny", \App\Models\Category::class)
+                            {{ $dataTable->table() }}
+                        @endcan
                     </div>
                 </div>
             </div>
@@ -38,16 +40,18 @@
     </div>
 @endsection
 @section("scripts")
-    <script src="{{ asset("plugins/table/datatable/datatables.js") }}"></script>
-    <!-- NOTE TO Use Copy CSV Excel PDF Print Options You Must Include These Files  -->
-    <script src="{{ asset("plugins/table/datatable/button-ext/dataTables.buttons.min.js") }}"></script>
-    <script src="{{ asset("plugins/table/datatable/button-ext/jszip.min.js") }}"></script>
-    <script src="{{ asset("plugins/table/datatable/button-ext/buttons.html5.min.js") }}"></script>
-    <script src="{{ asset("plugins/table/datatable/button-ext/buttons.print.min.js") }}"></script>
-    {{ $dataTable->scripts() }}
+    @can("viewAny", \App\Models\Category::class)
+        <script src="{{ asset("plugins/table/datatable/datatables.js") }}"></script>
+        <!-- NOTE TO Use Copy CSV Excel PDF Print Options You Must Include These Files  -->
+        <script src="{{ asset("plugins/table/datatable/button-ext/dataTables.buttons.min.js") }}"></script>
+        <script src="{{ asset("plugins/table/datatable/button-ext/jszip.min.js") }}"></script>
+        <script src="{{ asset("plugins/table/datatable/button-ext/buttons.html5.min.js") }}"></script>
+        <script src="{{ asset("plugins/table/datatable/button-ext/buttons.print.min.js") }}"></script>
+        {{ $dataTable->scripts() }}
+    @endcan
     <script>
         $(function () {
-            $("#create-category-btn").click(()=>{
+            $("#create-category-btn").click(() => {
                 Livewire.emit("cc-open");
             });
         })
