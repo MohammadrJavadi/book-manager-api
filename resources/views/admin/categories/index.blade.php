@@ -23,7 +23,7 @@
                     <div class="card-body">
                         @can("create", \App\Models\Category::class)
                             <div class="w-100 text-right">
-                                <button class="btn btn-primary">Create</button>
+                                <button class="btn btn-primary" id="create-category-btn">Create</button>
                             </div>
                             <hr>
                         @endcan
@@ -32,6 +32,9 @@
                 </div>
             </div>
         </div>
+        <x-elements.modal id="createCategory">
+            @livewire("categories.create-category")
+        </x-elements.modal>
     </div>
 @endsection
 @section("scripts")
@@ -42,4 +45,11 @@
     <script src="{{ asset("plugins/table/datatable/button-ext/buttons.html5.min.js") }}"></script>
     <script src="{{ asset("plugins/table/datatable/button-ext/buttons.print.min.js") }}"></script>
     {{ $dataTable->scripts() }}
+    <script>
+        $(function () {
+            $("#create-category-btn").click(()=>{
+                Livewire.emit("cc-open");
+            });
+        })
+    </script>
 @endsection
