@@ -5,8 +5,9 @@ namespace App\Http\Requests\Api;
 use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Http\Exceptions\HttpResponseException;
+use Illuminate\Support\Facades\Hash;
 
-class AuthRequest extends FormRequest
+class RegisterRequest extends FormRequest
 {
     public function rules(): array
     {
@@ -24,6 +25,13 @@ class AuthRequest extends FormRequest
     public function authorize(): bool
     {
         return true;
+    }
+
+    protected function prepareForValidation()
+    {
+        $this->merge([
+            "password"=>Hash::make($this->request->get("password"))
+        ]);
     }
 
     protected function failedValidation(Validator $validator)
