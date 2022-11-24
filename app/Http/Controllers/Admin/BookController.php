@@ -6,6 +6,7 @@ use App\DataTables\BookDataTable;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\BookRequest;
 use App\Models\Book;
+use App\Repositories\Interfaces\Author\AuthorQueryRepositoryInterface;
 use App\Repositories\Interfaces\Book\BookCommandRepositoryInterface;
 use App\Repositories\Interfaces\Book\BookQueryRepositoryInterface;
 use App\Services\UploadImageService;
@@ -29,9 +30,9 @@ class BookController extends Controller
         return $dataTable->render("admin.books.index");
     }
 
-    public function create()
+    public function create(AuthorQueryRepositoryInterface $author)
     {
-        return view("admin.books.create");
+        return view("admin.books.create", ["authors"=>$author->all()]);
     }
 
     public function store(BookRequest $request)
