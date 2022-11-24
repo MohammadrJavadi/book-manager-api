@@ -25,4 +25,7 @@ Route::middleware([
     //#region authors
     Route::resource("authors", \App\Http\Controllers\Admin\AuthorController::class)->only("index", "destroy");
     //#endregion
+    //#region categories
+    Route::resource("categories", \App\Http\Controllers\Admin\CategoryController::class)->only("index", "destroy");
+    //#endregion
 });

@@ -6,5 +6,9 @@ return [
         "family"=>"family",
         "age"=>"age",
         "gender"=>"gender"
+    ],
+    "category"=>[
+        "title"=>"title",
+        "summary"=>"summary"
     ]
 ];
