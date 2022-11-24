@@ -48,15 +48,21 @@ class BookController extends Controller
         return view("admin.books.show", ["book"=>$this->query->get($id, true)]);
     }
 
-    public function edit($id)
+    public function edit($id, AuthorQueryRepositoryInterface $author, CategoryQueryRepositoryInterface $category)
     {
-        return view("admin.books.edit", ["book"=>$this->query->get($id, true)]);
+        return view("admin.books.edit", [
+            "book"=>$this->query->get($id, true),
+            "authors"=>$author->all(),
+            "categories"=>$category->all()
+        ]);
     }
 
     public function update(BookRequest $request, $id)
     {
         $filePath=$this->service->store("image");
-        $this->command->update($id, $request->only(["title", "code", "shelf_number", "summary"])+["image"=>$filePath]);
+        $image = $filePath?["image"=>$filePath]:[];
+        $extra = ["author_id" => $request->input("author"), "category_id" => $request->input("category")];
+        $this->command->update($id, $request->only(["title", "code", "shelf_number", "summary"])+ $extra +$image);
         return $this->redirectRouteWithMessage("books.index", "success", trans("message.updated", ["resource" => "book"]));
     }
 

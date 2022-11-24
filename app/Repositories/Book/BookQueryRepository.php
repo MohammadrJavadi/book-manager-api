@@ -7,6 +7,14 @@ use App\Repositories\Interfaces\Book\BookQueryRepositoryInterface;
 
 class BookQueryRepository implements BookQueryRepositoryInterface
 {
+    /**
+     * @return \Illuminate\Database\Eloquent\Builder
+     */
+    private function query(): \Illuminate\Database\Eloquent\Builder
+    {
+        return Book::query();
+    }
+
     public function all()
     {
         return Book::all();
@@ -33,11 +41,13 @@ class BookQueryRepository implements BookQueryRepositoryInterface
         return $this->query()->find($id)->pluck("title");
     }
 
-    /**
-     * @return \Illuminate\Database\Eloquent\Builder
-     */
-    private function query(): \Illuminate\Database\Eloquent\Builder
+    public function author(int $id)
     {
-        return Book::query();
+        return $this->get($id)->author;
+    }
+
+    public function category(int $id)
+    {
+        return $this->get($id)->category;
     }
 }
