@@ -3,7 +3,7 @@
         @lang("modal.category.update")
     </div>
     <div class="modal-body">
-        <form>
+        <form wire:submit.prevent="submit">
             <div class="row">
                 <div class="col-sm-12">
                     <label for="title" class="col-form-label">{{ \Illuminate\Support\Str::ucfirst(__("field.category.title")) }}</label>
@@ -37,6 +37,10 @@
     <script>
         window.addEventListener("ucm-open", ()=>{
             $("#updateCategoryModal").modal();
+        });
+        window.addEventListener("ucm-close", ()=>{
+            $("#updateCategoryModal").modal("hide");
+            window.LaravelDataTables["category-table"].ajax.reload();
         });
     </script>
 @endpush

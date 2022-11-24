@@ -65,8 +65,9 @@
             $("#create-category-btn").click(() => {
                 Livewire.emit("cc-open");
             });
-            $(document).on("click", ".btn-update", ()=>{
-                Livewire.emit("uc-open");
+            $(document).on("click", ".btn-update", (event)=>{
+                const item_id = event.target.parentElement.parentElement.childNodes[0].value;
+                Livewire.emit("uc-open", item_id);
             });
         })
     </script>
