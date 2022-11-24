@@ -39,7 +39,7 @@ class BookController extends Controller
     public function store(BookRequest $request)
     {
         $filePath = $this->service->store("image");
-        $this->command->create($request->only(["title", "code", "shelf_number", "summary"]) + ["image"=>$filePath, "category_id"=>15, "author_id"=>14]);
+        $this->command->create($request->only(["title", "code", "shelf_number", "summary"]) + ["image"=>$filePath, "author_id"=>$request->input("author"), "category_id"=>$request->input("category")]);
         return $this->backWithMessage("success", trans("message.created", ["resource" => "book"]));
     }
 
