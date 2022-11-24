@@ -5,10 +5,18 @@ namespace App\Http\Controllers\Admin;
 use App\DataTables\CategoryDataTable;
 use App\Http\Controllers\Controller;
 use App\Models\Category;
+use App\Repositories\Interfaces\Category\CategoryCommandRepositoryInterface;
 use Illuminate\Http\Request;
 
 class CategoryController extends Controller
 {
+    private CategoryCommandRepositoryInterface $command;
+
+    public function __construct(CategoryCommandRepositoryInterface $command)
+    {
+        $this->command = $command;
+    }
+
     public function index(CategoryDataTable $dataTable)
     {
         return $dataTable->render("admin.categories.index");
@@ -28,6 +36,6 @@ class CategoryController extends Controller
 
     public function destroy($id)
     {
-        return Category::query()->find($id)->delete();
+        return $this->command->delete($id);
     }
 }
