@@ -33,9 +33,10 @@ class BookDataTable extends DataTable
             ->editColumn("action", function ($item) {
                 $item_id = el("input", ["type" => "hidden", "value" => $item->id], $item->id);
                 $delete_page = el("input", ["type" => "hidden", "value" => route("books.destroy", $item->id)], route("books.destroy", $item->id));
+                $specify_btn = el("a.text-success.btn-specify", el("i.fa-solid.fa-circle-info.table-icon"));
                 $edit_btn = el("a.text-warning", ["href" => route("books.edit", $item->id)], el("i.fa-solid.fa-pen-to-square.table-icon"));
                 $delete_btn = el("a.text-danger.delete-btn", el("i.fa-solid.fa-trash.table-icon"));
-                return el("pre", $item_id . $delete_page . $edit_btn . " " . $delete_btn);
+                return el("pre", $item_id . $delete_page . " " . $specify_btn . " " . $edit_btn . " " . $delete_btn);
             })
             ->rawColumns(["action", "category", "author"]);
     }
