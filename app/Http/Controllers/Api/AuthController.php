@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers\Api;
 
+use App\Exceptions\InvalidLogin;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Api\LoginRequest;
 use App\Http\Requests\Api\RegisterRequest;
 use App\Http\Resources\RegisterResource;
 use App\Repositories\Interfaces\User\UserCommandRepositoryInterface;
@@ -23,9 +25,12 @@ class AuthController extends Controller
         return new RegisterResource($user, $token);
     }
 
-    public function login()
+    public function login(LoginRequest $request)
     {
+        if (!\Auth::attempt($request->validated()))
+            throw new InvalidLogin();
 
+        return [];
     }
 
     public function logout()
