@@ -15,7 +15,9 @@ use App\Repositories\Interfaces\Book\BookQueryRepositoryInterface;
 use App\Repositories\Interfaces\Category\CategoryCommandRepositoryInterface;
 use App\Repositories\Interfaces\Category\CategoryQueryRepositoryInterface;
 use App\Repositories\Interfaces\User\UserCommandRepositoryInterface;
+use App\Repositories\Interfaces\User\UserQueryRepositoryInterface;
 use App\Repositories\User\UserCommandRepository;
+use App\Repositories\User\UserQueryRepository;
 use Illuminate\Support\ServiceProvider;
 
 class BindServiceProvider extends ServiceProvider
@@ -36,6 +38,7 @@ class BindServiceProvider extends ServiceProvider
         //#endregion
         //#region user
         $this->app->bind(UserCommandRepositoryInterface::class, UserCommandRepository::class);
+        $this->app->bind(UserQueryRepositoryInterface::class, UserQueryRepository::class);
         //#endregion
     }
 
