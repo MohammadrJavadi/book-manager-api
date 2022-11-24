@@ -12,6 +12,9 @@
             font-size: 20px;
             cursor: pointer;
         }
+        .btn-author{
+            cursor: pointer;
+        }
     </style>
 @endsection
 @push("sub-title")
@@ -35,6 +38,12 @@
                             <hr>
                         @endcan
                         {{ $dataTable->table() }}
+                        <x-elements.modal id="bookAuthor">
+                            @livewire("book.book-author")
+                        </x-elements.modal>
+                        <x-elements.modal id="specifyBook">
+                            @livewire("book.specify")
+                        </x-elements.modal>
                     </div>
                 </div>
             </div>
@@ -58,4 +67,18 @@
         <script src="{{ asset("assets/js/success-message.js") }}"></script>
     @endif
     <script src="{{ asset("assets/js/delete-book.js") }}"></script>
+    <script>
+        $(function () {
+            const doc = $(document);
+            doc.on("click", ".btn-author", event=>{
+                const item_id = event.target.parentElement.childNodes[0].value;
+                Livewire.emit("ba-open", item_id);
+            });
+            doc.on("click", ".btn-specify", event=>{
+                const item_id = event.target.parentElement.parentElement.childNodes[0].value;
+                // console.log(item_id)
+                Livewire.emit("sb-open", item_id);
+            });
+        })
+    </script>
 @endsection

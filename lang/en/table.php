@@ -2,5 +2,6 @@
 
 return [
     "row"=>"row",
-    "title"=>"title"
+    "title"=>"title",
+    "show"=>"show"
 ];

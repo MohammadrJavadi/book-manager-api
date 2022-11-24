@@ -20,6 +20,8 @@ class UploadImageService
 
     public function store(string $requestName, string $path="images")
     {
-        return $this->request->file($requestName)->store($path);
+        if ($this->request->file($requestName))
+            return $this->request->file($requestName)->store($path);
+        return null;
     }
 }

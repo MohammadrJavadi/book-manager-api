@@ -33,7 +33,9 @@ class BookRequest extends FormRequest
             "summary" => "nullable|string|min:50",
             "image" => "required|image|mimes:jpg",
             "code" => "required|min:5|unique:books",
-            "shelf_number" => "required|min:3"
+            "shelf_number" => "required|min:3",
+            "author"=>"required",
+            "category"=>"required",
         ];
     }
 
@@ -47,7 +49,9 @@ class BookRequest extends FormRequest
             "summary" => "nullable|string|min:50",
             "image" => "image|mimes:jpg",
             "code" => "required|min:5|unique:books",
-            "shelf_number" => "required|min:3"
+            "shelf_number" => "required|min:3",
+            "author"=>"required",
+            "category"=>"required",
         ];
     }
 }

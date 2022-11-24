@@ -11,4 +11,8 @@ interface BookQueryRepositoryInterface
     public function whereTitle(string $title);
 
     public function getTitle(int $id, bool $fail=false);
+
+    public function author(int $id);
+
+    public function category(int $id);
 }

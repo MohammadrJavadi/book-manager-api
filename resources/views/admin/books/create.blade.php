@@ -32,6 +32,22 @@
                             <div class="col-sm-6">
                                 <x-form.input id="shelf-number" name="shelf_number" label="Shelf Number:"/>
                             </div>
+                            <div class="col-sm-6">
+                                <label for="author" class="col-form-label">Author:</label>
+                                <select class="form-control" id="author" name="author">
+                                    @foreach($authors as $author)
+                                        <option value="{{ $author->id }}">{{ $author->name }} {{ $author->family }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                            <div class="col-sm-6">
+                                <label for="category" class="col-form-label">Category:</label>
+                                <select class="form-control" id="category" name="category">
+                                    @foreach($categories as $category)
+                                        <option value="{{ $category->id }}">{{ $category->title }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
                             <div class="col-sm-12">
                                 <x-form.textarea name="summary" id="summary" label="Summary:"/>
                             </div>
