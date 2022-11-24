@@ -40,7 +40,14 @@
                                     @endforeach
                                 </select>
                             </div>
-                            <div class="col-sm-6"></div>
+                            <div class="col-sm-6">
+                                <label for="category" class="col-form-label">Category:</label>
+                                <select class="form-control" id="category" name="category">
+                                    @foreach($categories as $category)
+                                        <option value="{{ $category->id }}">{{ $category->title }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
                             <div class="col-sm-12">
                                 <x-form.textarea name="summary" id="summary" label="Summary:"/>
                             </div>

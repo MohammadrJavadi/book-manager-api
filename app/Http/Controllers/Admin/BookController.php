@@ -9,6 +9,7 @@ use App\Models\Book;
 use App\Repositories\Interfaces\Author\AuthorQueryRepositoryInterface;
 use App\Repositories\Interfaces\Book\BookCommandRepositoryInterface;
 use App\Repositories\Interfaces\Book\BookQueryRepositoryInterface;
+use App\Repositories\Interfaces\Category\CategoryQueryRepositoryInterface;
 use App\Services\UploadImageService;
 use Illuminate\Http\Request;
 
@@ -30,9 +31,9 @@ class BookController extends Controller
         return $dataTable->render("admin.books.index");
     }
 
-    public function create(AuthorQueryRepositoryInterface $author)
+    public function create(AuthorQueryRepositoryInterface $author, CategoryQueryRepositoryInterface $category)
     {
-        return view("admin.books.create", ["authors"=>$author->all()]);
+        return view("admin.books.create", ["authors"=>$author->all(), "categories"=>$category->all()]);
     }
 
     public function store(BookRequest $request)
