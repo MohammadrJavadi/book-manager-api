@@ -7,11 +7,13 @@ use App\Repositories\Author\AuthorQueryRepository;
 use App\Repositories\Book\BookCommandRepository;
 use App\Repositories\Book\BookQueryRepository;
 use App\Repositories\Category\CategoryCommandRepository;
+use App\Repositories\Category\CategoryQueryRepository;
 use App\Repositories\Interfaces\Author\AuthorCommandRepositoryInterface;
 use App\Repositories\Interfaces\Author\AuthorQueryRepositoryInterface;
 use App\Repositories\Interfaces\Book\BookCommandRepositoryInterface;
 use App\Repositories\Interfaces\Book\BookQueryRepositoryInterface;
 use App\Repositories\Interfaces\Category\CategoryCommandRepositoryInterface;
+use App\Repositories\Interfaces\Category\CategoryQueryRepositoryInterface;
 use Illuminate\Support\ServiceProvider;
 
 class BindServiceProvider extends ServiceProvider
@@ -28,6 +30,7 @@ class BindServiceProvider extends ServiceProvider
         //#endregion
         //#region categories
         $this->app->bind(CategoryCommandRepositoryInterface::class, CategoryCommandRepository::class);
+        $this->app->bind(CategoryQueryRepositoryInterface::class, CategoryQueryRepository::class);
         //#endregion
     }
 
