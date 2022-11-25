@@ -19,9 +19,10 @@ Route::group(["prefix" => "v1", "as" => "api."],function (){
     //#region auth
     Route::post("/login", [AuthController::class, "login"])->name("login");
     Route::post("/register", [AuthController::class, "register"])->name("register");
-    Route::post("/logout", [AuthController::class, "logout"])->name("logout");
     //#endregion
     Route::group(["middleware" => "auth:sanctum"], function (){
-
+        //#region auth
+        Route::post("/logout", [AuthController::class, "logout"])->name("logout");
+        //#endregion
     });
 });
