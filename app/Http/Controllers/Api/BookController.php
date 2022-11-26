@@ -51,5 +51,7 @@ class BookController extends Controller
 
     public function destroy($id)
     {
+        $res = $this->command->delete($id);
+        return $this->success(trans("message.deleted", ["resource" => "book"]), $res);
     }
 }
