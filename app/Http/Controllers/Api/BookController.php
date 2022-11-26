@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Http\Resources\BookCollection;
+use App\Http\Resources\BookResource;
 use App\Repositories\Interfaces\Book\BookCommandRepositoryInterface;
 use App\Repositories\Interfaces\Book\BookQueryRepositoryInterface;
 use Illuminate\Http\Request;
@@ -31,6 +32,8 @@ class BookController extends Controller
 
     public function show($id)
     {
+        $book = $this->query->get($id);
+        return new BookResource($book);
     }
 
     public function update(Request $request, $id)
