@@ -43,8 +43,10 @@ class BookController extends Controller
         return new BookResource($book);
     }
 
-    public function update(Request $request, $id)
+    public function update($id, BookRequest $request)
     {
+        $book = $this->command->update($id, $request->validated()+["category_id"=>$request->input("category"),"author_id"=>$request->input("author")]);
+        return $this->success(trans("message.updated", ["resource" => "book"]), $book);
     }
 
     public function destroy($id)
