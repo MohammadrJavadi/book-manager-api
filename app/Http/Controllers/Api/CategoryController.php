@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Api\CategoryRequest;
 use App\Http\Resources\CategoryCollection;
 use App\Http\Resources\CategoryResource;
 use App\Repositories\Interfaces\Category\CategoryCommandRepositoryInterface;
@@ -25,8 +26,10 @@ class CategoryController extends Controller
         return new CategoryCollection($this->query->all());
     }
 
-    public function store(Request $request)
+    public function store(CategoryRequest $request)
     {
+        $category = $this->command->create($request->validated());
+        return $this->success(trans("message.created", ["resource" => "category"]), $category);
     }
 
     public function show($id)
