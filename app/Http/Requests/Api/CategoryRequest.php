@@ -10,16 +10,37 @@ class CategoryRequest extends FormRequest
 {
     public function rules(): array
     {
-        return [
-            "title"=>"required|string|min:3",
-            "summary"=>"nullable|string|min:30"
-        ];
+        switch (request()->method()) {
+            case "POST":
+                return $this->store();
+            case "PUT" || "PATCH":
+                return $this->update();
+        }
     }
 
     public function authorize(): bool
     {
         return true;
     }
+
+    /**
+     * @return string[]
+     */
+    private function store(): array
+    {
+        return [
+            "title" => "required|string|min:3",
+            "summary" => "nullable|string|min:30"
+        ];
+    }
+    private function update()
+    {
+        return [
+            "title" => "required|string|min:3",
+            "summary" => "nullable|string|min:30"
+        ];
+    }
+
     protected function failedValidation(Validator $validator)
     {
         throw new HttpResponseException(response()->json([

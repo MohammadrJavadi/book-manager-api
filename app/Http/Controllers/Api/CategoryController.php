@@ -37,8 +37,10 @@ class CategoryController extends Controller
         return new CategoryResource($this->query->get($id));
     }
 
-    public function update(Request $request, $id)
+    public function update($id, CategoryRequest $request)
     {
+        $category = $this->command->update($id, $request->validated());
+        return $this->success(trans("message.updated", ["resource" => "category"]), $category);
     }
 
     public function destroy($id)
