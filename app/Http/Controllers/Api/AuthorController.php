@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Http\Resources\AuthorCollection;
 use App\Models\Author;
 use App\Repositories\Interfaces\Author\AuthorCommandRepositoryInterface;
 use App\Repositories\Interfaces\Author\AuthorQueryRepositoryInterface;
@@ -21,7 +22,7 @@ class AuthorController extends Controller
 
     public function index()
     {
-
+        return new AuthorCollection($this->query->all());
     }
 
     public function store(Request $request)
