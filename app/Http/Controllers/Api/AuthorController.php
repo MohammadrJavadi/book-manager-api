@@ -38,8 +38,10 @@ class AuthorController extends Controller
         return new AuthorResource($this->query->get($author));
     }
 
-    public function update(Request $request, $author)
+    public function update(AuthorRequest $request, $author)
     {
+        $res = $this->command->update($author, $request->validated());
+        return $this->success(trans("message.updated", ["resource" => "author"]), $res);
     }
 
     public function destroy($author)
