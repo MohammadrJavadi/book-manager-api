@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Api\AuthorRequest;
 use App\Http\Resources\AuthorCollection;
 use App\Http\Resources\AuthorResource;
 use App\Models\Author;
@@ -26,8 +27,10 @@ class AuthorController extends Controller
         return new AuthorCollection($this->query->all());
     }
 
-    public function store(Request $request)
+    public function store(AuthorRequest $request)
     {
+        $author = $this->command->create($request->validated());
+        return $this->success(trans("message.created", ["resource" => "author"]), $author);
     }
 
     public function show($author)
