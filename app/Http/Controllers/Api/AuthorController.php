@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Http\Resources\AuthorCollection;
+use App\Http\Resources\AuthorResource;
 use App\Models\Author;
 use App\Repositories\Interfaces\Author\AuthorCommandRepositoryInterface;
 use App\Repositories\Interfaces\Author\AuthorQueryRepositoryInterface;
@@ -29,15 +30,16 @@ class AuthorController extends Controller
     {
     }
 
-    public function show(Author $author)
+    public function show($author)
+    {
+        return new AuthorResource($this->query->get($author));
+    }
+
+    public function update(Request $request, $author)
     {
     }
 
-    public function update(Request $request, Author $author)
-    {
-    }
-
-    public function destroy(Author $author)
+    public function destroy($author)
     {
     }
 }
