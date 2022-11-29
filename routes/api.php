@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Api\AuthController;
+use App\Http\Controllers\Api\BookController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -20,9 +21,15 @@ Route::group(["prefix" => "v1", "as" => "api."],function (){
     Route::post("/login", [AuthController::class, "login"])->name("login");
     Route::post("/register", [AuthController::class, "register"])->name("register");
     //#endregion
+    //#region books
+    Route::apiResource("books", BookController::class, ["only" => ["index", "show"]]);
+    //#endregion
     Route::group(["middleware" => "auth:sanctum"], function (){
         //#region auth
         Route::post("/logout", [AuthController::class, "logout"])->name("logout");
+        //#endregion
+        //#region books
+        Route::apiResource("books", BookController::class, ["except" => ["index", "show"]]);
         //#endregion
     });
 });
