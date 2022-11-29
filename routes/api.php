@@ -31,5 +31,8 @@ Route::group(["prefix" => "v1", "as" => "api."],function (){
         //#region books
         Route::apiResource("books", BookController::class, ["except" => ["index", "show"]]);
         //#endregion
+        //#region categories
+        Route::apiResource("categories", \App\Http\Controllers\Api\CategoryController::class);
+        //#endregion
     });
 });
