@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Http\Resources\CategoryCollection;
+use App\Http\Resources\CategoryResource;
 use App\Repositories\Interfaces\Category\CategoryCommandRepositoryInterface;
 use App\Repositories\Interfaces\Category\CategoryQueryRepositoryInterface;
 use Illuminate\Http\Request;
@@ -30,6 +31,7 @@ class CategoryController extends Controller
 
     public function show($id)
     {
+        return new CategoryResource($this->query->get($id));
     }
 
     public function update(Request $request, $id)
