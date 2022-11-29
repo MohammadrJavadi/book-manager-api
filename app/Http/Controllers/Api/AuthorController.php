@@ -46,5 +46,7 @@ class AuthorController extends Controller
 
     public function destroy($author)
     {
+        $res = $this->command->delete($author);
+        return $this->success(trans("message.deleted", ["resource" => "author"]), $res);
     }
 }
