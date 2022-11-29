@@ -34,5 +34,8 @@ Route::group(["prefix" => "v1", "as" => "api."],function (){
         //#region categories
         Route::apiResource("categories", \App\Http\Controllers\Api\CategoryController::class);
         //#endregion
+        //#region authors
+        Route::apiResource("authors", \App\Http\Controllers\Api\AuthorController::class);
+        //#endregion
     });
 });
